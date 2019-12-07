@@ -60,7 +60,6 @@ CapsLock & Space::Shift
 ;  N.B.: If these are inside the IF statement, if the Function Layer key (Caps) is released before the
 ;  modifiers, they bug out to be 
 
-;#UseHook
 ; When CapsLock is pressed, but "i" is not (as to not overwrite Layer 2 commands)
 #If, GetKeyState("CapsLock", "P") && !GetKeyState("i", "P")
 
@@ -72,11 +71,179 @@ Enter::Tab
 ^g::Send, ^{Ins}
 ^x::Send, +{Delete}
 
-; Navigation
-r::Up
-t::Left
-n::Down
-s::Right
+; Navigation ("Rapid Fire")
+r::
+  Send, {Up}
+  Sleep, 100
+  While GetKeyState("r","P")
+  {
+    Send, {Up}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+t::
+  Send, {Left}
+  Sleep, 100
+  While GetKeyState("t","P")
+  {
+    Send, {Left}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+n::
+  Send, {Down}
+  Sleep, 100
+  While GetKeyState("n","P")
+  {
+    Send, {Down}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+s::
+  Send, {Right}
+  Sleep, 100
+  While GetKeyState("s","P")
+  {
+    Send, {Right}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+
+; With modifiers: Shift
++r::
+  Send, +{Up}
+  Sleep, 100
+  While GetKeyState("r","P")
+  {
+    Send, +{Up}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
++t::
+  Send, +{Left}
+  Sleep, 100
+  While GetKeyState("t","P")
+  {
+    Send, +{Left}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
++n::
+  Send, +{Down}
+  Sleep, 100
+  While GetKeyState("n","P")
+  {
+    Send, +{Down}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
++s::
+  Send, +{Right}
+  Sleep, 100
+  While GetKeyState("S","P")
+  {
+    Send, +{Right}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+
+; With modifiers: Ctrl
+^r::
+  Send, ^{Up}
+  Sleep, 100
+  While GetKeyState("r","P")
+  {
+    Send, ^{Up}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+^t::
+  Send, ^{Left}
+  Sleep, 100
+  While GetKeyState("t","P")
+  {
+    Send, ^{Left}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+^n::
+  Send, ^{Down}
+  Sleep, 100
+  While GetKeyState("n","P")
+  {
+    Send, ^{Down}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+^s::
+  Send, ^{Right}
+  Sleep, 100
+  While GetKeyState("S","P")
+  {
+    Send, ^{Right}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+
+; With modifiers: Shift^+Ctrl
+^+r::
+  Send ^+{Up}
+  Sleep, 100
+  While GetKeyState("r","P")
+  {
+    Send, ^+{Up}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+^+t::
+  Send ^+{Left}
+  Sleep, 100
+  While GetKeyState("t","P")
+  {
+    Send, ^+{Left}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+^+n::
+  Send, ^+{Down}
+  Sleep, 100
+  While GetKeyState("n","P")
+  {
+    Send, ^+{Down}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+^+s::
+  Send, ^+{Right}
+  Sleep, 100
+  While GetKeyState("S","P")
+  {
+    Send, ^+{Right}
+    Sleep, 20 ; every 20 miliseconds
+  }
+  Return
+
+; For some reason defining the rapid fire while loops disables the other modifier keys on the arrow keys.
+; With modifiers: Meta (Win)
+#r::Send, #{Up}
+#t::Send, #{Left}
+#n::Send, #{Down}
+#s::Send, #{Right}
+; With modifiers: Meta, Shift
++#r::Send, +#{Up}
++#t::Send, +#{Left}
++#n::Send, +#{Down}
++#s::Send, +#{Right}
+; With modifierss: Meta, Ctrl
+^#r::Send, ^#{Up}
+^#t::Send, ^#{Left}
+^#n::Send, ^#{Down}
+^#s::Send, ^#{Right}
+; With modifiers: Alt
+!r::Send, !{Up}
+!t::Send, !{Left}
+!n::Send, !{Down}
+!s::Send, !{Right}
 
 ; More Navigation
 c::Home
